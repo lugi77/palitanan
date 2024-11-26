@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Auth\CustomAuthenticatedSessionController;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,6 +17,12 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 })->name('welcome');
+
+Route::view('marketplace', 'marketplace')->name('marketplace');
+Route::view('sell-item', 'sell-item')->name('sell-item');
+Route::view('messages', 'messages')->name('messages');
+Route::post('/logout', action: [CustomAuthenticatedSessionController::class, 'destroy'])->name('logout');
+
 
 Route::middleware([
     'auth:sanctum',
